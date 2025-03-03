@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.con1{
+    height: 15vh;
+    width: 100vw;
+    background-color: rgb(35, 33, 33);
+    color: white;
+    text-align: center;
+}
+
+.con1 > #para1{
+    word-spacing: 20px;
+}
+
+.con2{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.con2 > #para2{
+    text-align: center;
+}
+
+.exp1{
+    text-align: center;
+}
+
+.ov{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ov > .pc{
+    height: 200px;
+    width: 300px;
+    background-color: rgb(179, 176, 176);
+    border: rgb(179, 176, 176);
+    box-shadow: 1px 1px 1px 1px;
+    
+}
+
+.ov > .tpm{
+    height: 200px;
+    width: 300px;
+    background-color: rgb(179, 176, 176);
+    border: rgb(179, 176, 176);
+    box-shadow: 1px 1px 1px 1px;
+}
+
+.ttt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ttt > .tec{
+    height: 200px;
+    width: 300px;
+    background-color: rgb(179, 176, 176);
+    border: rgb(179, 176, 176);
+    box-shadow: 1px 1px 1px 1px;    
+}
+
+
+
+.cm > #head6{
+    text-align: center;
+}
+
+.cm > #para6{
+    text-align: center;
+}
+
+.cm > #para7{
+    text-align: center;
+}
+
+.foot{
+    height: 10vh;
+    width: 100vw;
+    background-color: rgb(35, 33, 33);
+    color: white;
+    text-align: center;
+}
