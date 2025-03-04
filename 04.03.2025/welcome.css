@@ -1,0 +1,53 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.header{
+    align-items: center;
+    text-align: center;
+    background-color:rgb(238, 112, 112);;
+    color: rgb(21, 19, 19);
+    padding: 15px;
+}
+.container{
+    background-color:whitesmoke;
+    width: 400px;
+    height: 300px;
+    margin-top: 40px;
+    margin-left: 410px;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid;
+}
+.searchbar{
+    padding: 30px;
+
+}
+input{
+    width: 200px;
+    padding: 5px;
+}
+.forgot{
+    text-align:right;
+    padding: 10px;
+}
+.login{
+    padding:5px ;
+    margin-top: 30px;
+}
+button{
+    width: 200px;
+    padding: 5px;
+    background-color:skyblue;
+}
+button:hover{
+    cursor: pointer;
+}
+.box3{
+    background-color:rgb(238, 112, 112);
+    color: rgb(21, 19, 19);
+    padding: 15px;
+    text-align: center;
+    margin-top: 50px;
+}
