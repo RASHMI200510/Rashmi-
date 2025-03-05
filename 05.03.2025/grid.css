@@ -1,0 +1,28 @@
+body {
+    margin: 10px;
+    font-family: 'Abel';
+    text-align: center;
+    width:580px;
+    align-items: center;
+    margin-left: 350px;
+    background-color:rgb(228, 136, 228)
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 180px 180px 180px;
+    justify-content: center;
+    cursor: pointer;
+    transition:height 0.5s ease ease-in-out;
+    border-radius: 5px;
+    gap:10px;
+  }
+  .item {
+    color: white;
+  }
+.a {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
