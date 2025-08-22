@@ -1,0 +1,15 @@
+show databases;
+create database saThyabaMa;
+use sathyabama;
+create table ECE(
+sid int, 
+sname varchar(30),
+smarks int 
+);
+show tables from sathyabama;
+desc ece;
+insert into ece values(1001,'rashmi',90,9798677),(1002,'harshita',9559766),(1003,'sharu',98,9750595),(1004,'shivani',96,587507507);
+select * from ece;
+ALTER TABLE ece ADD(
+   semail varchar(25),sphone int8);
+ALTER TABLE ece DROP COLUMN semail;
