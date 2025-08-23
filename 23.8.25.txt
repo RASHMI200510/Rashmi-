@@ -1,0 +1,55 @@
+
+show databases;
+create database comPaNy;
+use company;
+CREATE TABLE Persons(
+ID int NOT NULL,
+LastName varchar(255)NOT NULL,
+FirstName varchar(255)NOT NULL,
+Age int 
+);
+show tables from company;
+desc persons;
+insert into persons values(101,'R','RASHMI',20),(102,'G','SHIVANI',200),(103,'R','SHARU',19);
+select * from persons;
+
+ALTER TABLE Persons
+MODIFY Age int NOT NULL;
+
+ALTER TABLE Persons
+ADD UNIQUE (ID);
+
+UPDATE PERSONS SET ID = '104'
+WHERE ID = 103;
+
+ALTER TABLE Persons
+ADD CHECK(Age >= 18 and Age <= 130)
+
+
+
+#PRIMARY KEY CONCEPT
+
+
+create database amazon;
+use amazon;
+
+CREATE TABLE category(
+   cid int primary key ,
+   cname varchar(25) NOT NULL
+);
+
+insert into category values(1001,'Electronics');
+insert into category values(1002,'Furniture');
+select * from category;
+
+CREATE TABLE products(
+     pid int primary key,
+     pname varchar(50)NOT NULL,
+     cid int NOT NULL,
+     FOREIGN KEY (cid)REFERENCES category (cid)
+);
+
+insert into  products values(901,'Titan Smart watch',1001);
+insert into  products values(902,'Wooden Chair',1002);
+insert into  products values(903,'IPhone 16s',1001);
+select * from products;
