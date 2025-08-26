@@ -1,0 +1,122 @@
+CREATE DATABASE ORG123;
+SHOW DATABASES;
+USE ORG123;
+
+CREATE TABLE Worker (
+	WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	FIRST_NAME CHAR(25),
+	LAST_NAME CHAR(25),
+	SALARY INT(15),
+	JOINING_DATE DATETIME,
+	DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker 
+	(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+		(002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+		(003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+		(004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+		(005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+		(006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+		(007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+		(008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+
+select * from worker where department ='admin' and salary >= 200000;
+select * from worker where department ='admin' and salary <= 200000;
+
+select * from worker where department ='admin' or salary <= 200000;
+
+select * from worker where department ='admin' and salary >= 200000;
+
+select * from worker WHERE JOINING_DATE > '2014-03-01' AND SALARY < 100000;
+
+SELECT * FROM Worker WHERE DEPARTMENT != 'Account' AND SALARY > 150000 AND JOINING_DATE >= '2014-01-01';
+
+SELECT * FROM Worker WHERE (SALARY BETWEEN 75000 AND 100000) OR (DEPARTMENT = 'Admin' AND JOINING_DATE < '2014-05-01');
+
+SELECT * FROM Worker WHERE SALARY > 100000;
+select * from worker where worker_id not IN (1,3,5,7) AND salary >= 100000;
+
+select * from worker where worker_id  IN (1,3,5,7) AND salary = 100000;
+
+select * from worker where worker_id not IN (2,4,6,8) AND salary <= 200000;
+
+select * from worker where worker_id IN (2,4,6,8) AND salary = 500000;
+
+select * from worker 
+WHERE salary BETWEEN 100000 AND 500000
+AND department NOT IN ('Hr','admin');
+
+select * from worker 
+WHERE salary BETWEEN 70000 AND 300000
+AND department NOT IN ('Hr','admin');
+
+
+
+SELECT * FROM Worker WHERE FIRST_NAME LIKE 'V%' AND SALARY >= 200000;
+
+SELECT * FROM Worker
+WHERE DEPARTMENT != 'Admin'
+  AND SALARY < 100000;
+  
+SELECT MIN(salary)
+AS lowestsalaryPerson 
+from worker;
+  
+SELECT MAX(salary)
+AS highestsalaryPerson 
+from worker;
+
+SELECT COUNT(WORKER_ID)
+AS NUMBEROFPERSONS
+from worker;
+
+SELECT SUM(salary)
+AS totalsalary 
+from worker;
+
+SELECT AVG(salary)
+AS averagesalary
+from worker;
+
+SELECT * FROM Worker WHERE DEPARTMENT = 'HR'
+  AND SALARY = (SELECT MIN(SALARY) 
+                FROM Worker 
+                WHERE DEPARTMENT = 'HR');
+
+SELECT AVG(SALARY) 
+AS Average_Salary
+FROM Worker
+WHERE DEPARTMENT = 'Admin';
+
+SELECT SUM(salary)
+AS total_salary 
+from worker
+WHERE DEPARTMENT IN ('HR' , 'ADMIN');
+
+SELECT COUNT(*) AS Total_Employees
+FROM Worker
+WHERE FIRST_NAME LIKE 'V%';
+
+SELECT SUM(salary)
+FROM WORKER
+AS total_salary 
+WHERE salary BETWEEN 50000 AND 200000; 
+
+select first_name from worker
+union all 
+select last_name from worker;
+
+select salary from worker
+union 
+select salary from worker;
+
+SELECT  first_name ,salary,
+CASE 
+   WHEN salary >= 300000 THEN 'RICH'
+   WHEN salary >= 100000 and salary <= 300000 THEN 'MIDDLE'
+   ELSE 'POOR'
+END
+AS StatusBasedOnSalary
+FROM  WORKER;
