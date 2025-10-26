@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban Board</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <h1>  Kanban Board</h1>
+        <p>A place to organise tasks to completion as well as add new ones and delete old ones.</p>
+      </div>
+      <div class="header-right">
+        <input type="text" id="title" placeholder="Title..." />
+        <input type="text" id="description" placeholder="Description..." />
+        <button id="addBtn">Submit</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="column" id="backlog">
+        <h2>✔️ Backlog</h2>
+        <div class="task-list" id="backlogList"></div>
+      </div>
+
+      <div class="column" id="doing">
+        <h2>✔️ Doing</h2>
+        <div class="task-list" id="doingList"></div>
+      </div>
+
+      <div class="column" id="done">
+        <h2>✔️ Done</h2>
+        <div class="task-list" id="doneList"></div>
+      </div>
+
+      <div class="column" id="wontdo">
+        <h2>✔️ Won't Do</h2>
+        <div class="task-list" id="wontdoList"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
