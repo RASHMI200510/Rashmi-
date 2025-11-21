@@ -1,0 +1,189 @@
+1)Polymorphism(Method of Riding)
+
+package nov_21;
+
+public class Poly {
+
+    public static void main(String[] args) {
+        Son s = new Son();
+        s.RE();
+    }
+}
+
+class GrandFather {
+    void RE() {
+        System.out.println("GrandFather RE 1985");
+    }
+}
+
+class Father extends GrandFather {
+    void RE() {
+        System.out.println("Father's RE 2002");
+    }
+}
+
+class Son extends Father {
+    void RE() {
+        super.RE();
+        System.out.println("Son's RE 2022");
+    }
+}
+
+--------------------------------------------------------------------------------------------
+
+2)Method of Loading
+
+package nov_21;
+
+public class Calci {
+public static void main(String[] args){
+	Calculator  c=new Calculator();
+	c.addition(10,25.25);
+}
+}
+class Calculator{
+	void addition(int a,int b){
+		System.out.println("1st method " + (a+b));
+	}
+	void addition(int a,double b){
+		System.out.println("2nd method "+ (a+b));
+	}
+	void addition(int a,double b,int c){
+	System.out.println("1st method " + (a+b+c));
+}
+}
+
+----------------------------------------------------------------------------------------
+
+3)Constructor
+
+
+package nov21;
+
+public class Calculator {
+    public static void main(String[] args) {
+       
+        Calc c = new Calc(15);
+    }
+}
+
+class Calc {
+   
+    public Calc() {
+        System.out.println("Default Constructor");
+    }
+
+    
+    Calc(int a, int b) {
+        System.out.println(a + b);
+    }
+
+    
+    Calc(int a) {
+        this(15, 25);  
+        System.out.println("Para Constructor: " + a);
+    }
+}
+
+-----------------------------------------------------------------------------------------
+
+4)Getter and Setter 
+
+package nov21;
+
+public class Account {
+    public static void main(String[] args){
+        Phonepe p = new Phonepe();
+        p.chaneEmail();
+    }
+}
+
+class SBI {
+    String acc_holder_name = "Rashmi";
+    long acc_balance = 150000;
+    String mail_id = "rashmi@gmail.com";
+
+    public String getAcc_holder_name() {
+        return acc_holder_name;
+    }
+
+    public void setAcc_holder_name(String acc_holder_name) {
+        this.acc_holder_name = acc_holder_name;
+    }
+
+    public long getAcc_balance() {
+        return acc_balance;
+    }
+
+    public void setAcc_balance(long acc_balance) {
+        this.acc_balance = acc_balance;
+    }
+
+    public String getMail_id() {
+        return mail_id;
+    }
+
+    public void setMail_id(String mail_id) {
+        this.mail_id = mail_id;
+    }
+}
+
+class Phonepe extends SBI {
+    void checkBalance() {
+        acc_balance = 15000000;
+    }
+
+    void chaneEmail() {
+        System.out.println(acc_balance);        
+        System.out.println(getMail_id());       
+        setMail_id("rashmi@ece.in");            
+        System.out.println(getMail_id());       
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+5)Try Catch,Exception Handling
+
+
+package nov21;
+import java.util.Scanner;
+
+public class Exceperror {
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        
+        try {
+            int a[] = {10,20,30,40,50};
+            
+            // ARRAY PART
+            System.out.println("Array length: " + a.length);
+            System.out.println("Enter the index to get the array element:");
+            int index = s.nextInt();
+            System.out.println(a[index]);
+
+            // DIVISION PART (your code)
+            System.out.println("Enter the value for a: ");
+            int num1 = s.nextInt();
+            System.out.println("Enter the value for b: ");
+            int num2 = s.nextInt();
+            System.out.println("output is :" + (num1 / num2));
+        }
+
+        catch (ArithmeticException e){
+            System.out.println("You did a mistake:");
+            System.out.println("Don't worry, it's a small mistake");
+        }
+
+        catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("You did a mistake:");
+            System.out.println("Don't worry, it's a small mistake");
+        }
+
+        finally {
+            System.out.println("Thanks for visiting");
+        }
+
+        System.out.println("continue....");
+    }
+}
