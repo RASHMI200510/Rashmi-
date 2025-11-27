@@ -1,0 +1,465 @@
+1.Collections
+
+package nov_27;
+import java.util.*;
+
+public class Mapexample{
+
+    public static void main(String[] args) {
+
+        System.out.println("=== HashMap put() Example ===");
+        HashMap<Integer, String> map = new HashMap<>();
+
+        map.put(1, "Mango");
+        map.put(2, "Apple");
+        map.put(3, "Banana");
+        map.put(1, "Grapes"); // duplicate key, replaces value
+
+        for (Map.Entry<Integer, String> m : map.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== putIfAbsent() Example ===");
+        map.putIfAbsent(4, "Orange");
+        map.putIfAbsent(2, "Pineapple"); // will NOT replace
+
+        for (Map.Entry<Integer, String> m : map.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== putAll() Example ===");
+        HashMap<Integer, String> map2 = new HashMap<>();
+        map2.put(5, "Papaya");
+
+        map2.putAll(map);
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== remove() Example ===");
+        map2.remove(1); // key removal
+        map2.remove(2, "Apple"); // key-value removal
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== replace() Example ===");
+
+        map2.replace(3, "Melon");            // replaces Banana
+        map2.replace(4, "Orange", "Guava");  // conditional replace
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== replaceAll() Example ===");
+        map2.replaceAll((k, v) -> "Ajay");  // replaces all values
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== Using Map.Entry Methods ===");
+        for (Map.Entry<Integer, String> entry : map2.entrySet()) {
+            System.out.println("Key: " + entry.getKey() +
+                               ", Value: " + entry.getValue() +
+                               ", HashCode: " + entry.hashCode());
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+2.Add and remove operations
+
+
+package nov_27;
+
+import java.util.*;
+
+public class Addremove {
+
+    public static void main(String[] args) {
+
+        // ------------------------------- PART 1 : ADDING elements -------------------------------
+        System.out.println("\n===== LINKEDLIST ADDING OPERATIONS =====");
+
+        LinkedList<String> ll = new LinkedList<>();
+        System.out.println("Initial List: " + ll);
+
+        ll.add("Ravi");
+        ll.add("Vijay");
+        ll.add("Ajay");
+        System.out.println("After add(E element): " + ll);
+        
+        System.out.println("---------------------------------------");
+
+        ll.add(1, "Gaurav");
+        System.out.println("After add(index, element): " + ll);
+        
+        System.out.println("---------------------------------------");
+
+      
+        LinkedList<String> ll2 = new LinkedList<>();
+        ll2.add("Sonoo");
+        ll2.add("Hanumat");
+        ll.addAll(ll2);
+        System.out.println("After addAll(Collection): " + ll);
+
+        System.out.println("---------------------------------------");
+
+        
+        LinkedList<String> ll3 = new LinkedList<>();
+        ll3.add("John");
+        ll3.add("Rahul");
+        ll.addAll(1, ll3);
+        System.out.println("After addAll(index, Collection): " + ll);
+        
+        System.out.println("---------------------------------------");
+
+
+        ll.addFirst("Lokesh");
+        System.out.println("After addFirst(): " + ll);
+        
+        System.out.println("---------------------------------------");
+
+
+        ll.addLast("Harsh");
+        System.out.println("After addLast(): " + ll);
+        
+        System.out.println("---------------------------------------");
+
+
+
+        // ------------------------------- PART 2 : REMOVING elements -------------------------------
+        System.out.println("\n===== LINKEDLIST REMOVAL OPERATIONS =====");
+
+        LinkedList<String> removeList = new LinkedList<>();
+        removeList.add("Ravi");
+        removeList.add("Vijay");
+        removeList.add("Ajay");
+        removeList.add("Anuj");
+        removeList.add("Gaurav");
+        removeList.add("Harsh");
+        removeList.add("Virat");
+        removeList.add("Gaurav");
+        removeList.add("Harsh");
+        removeList.add("Amit");
+
+        System.out.println("Initial List: " + removeList);
+        
+        System.out.println("---------------------------------------");
+
+
+        removeList.remove("Vijay");
+        System.out.println("After remove(object): " + removeList);
+
+        System.out.println("---------------------------------------");
+
+        removeList.remove(0);
+        System.out.println("After remove(index): " + removeList);
+
+        System.out.println("---------------------------------------");
+
+        LinkedList<String> tempList = new LinkedList<>();
+        tempList.add("Ravi");
+        tempList.add("Hanumat");
+        removeList.addAll(tempList);
+        System.out.println("After addAll(new list): " + removeList);
+        
+        System.out.println("---------------------------------------");
+
+
+        removeList.removeAll(tempList);
+        System.out.println("After removeAll(new list): " + removeList);
+        
+        System.out.println("---------------------------------------");
+
+
+        removeList.removeFirst();
+        System.out.println("After removeFirst(): " + removeList);
+        
+        System.out.println("---------------------------------------");
+
+
+        removeList.removeLast();
+        System.out.println("After removeLast(): " + removeList);
+
+        System.out.println("---------------------------------------");
+
+        removeList.removeFirstOccurrence("Gaurav");
+        System.out.println("After removeFirstOccurrence(): " + removeList);
+        
+        System.out.println("---------------------------------------");
+
+
+        removeList.removeLastOccurrence("Harsh");
+        System.out.println("After removeLastOccurrence(): " + removeList);
+        
+        System.out.println("---------------------------------------");
+
+
+        removeList.clear();
+        System.out.println("After clear(): " + removeList);
+        
+    }
+}
+
+-----------------------------------------------------------------------------------------------
+
+3.Map examples
+
+
+package nov_27;
+import java.util.*;
+
+public class Mapexample{
+
+    public static void main(String[] args) {
+
+        System.out.println("=== HashMap put() Example ===");
+        HashMap<Integer, String> map = new HashMap<>();
+
+        map.put(1, "Mango");
+        map.put(2, "Apple");
+        map.put(3, "Banana");
+        map.put(1, "Grapes"); // duplicate key, replaces value
+
+        for (Map.Entry<Integer, String> m : map.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== putIfAbsent() Example ===");
+        map.putIfAbsent(4, "Orange");
+        map.putIfAbsent(2, "Pineapple"); // will NOT replace
+
+        for (Map.Entry<Integer, String> m : map.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== putAll() Example ===");
+        HashMap<Integer, String> map2 = new HashMap<>();
+        map2.put(5, "Papaya");
+
+        map2.putAll(map);
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== remove() Example ===");
+        map2.remove(1); // key removal
+        map2.remove(2, "Apple"); // key-value removal
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== replace() Example ===");
+
+        map2.replace(3, "Melon");            // replaces Banana
+        map2.replace(4, "Orange", "Guava");  // conditional replace
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== replaceAll() Example ===");
+        map2.replaceAll((k, v) -> "Ajay");  // replaces all values
+
+        for (Map.Entry<Integer, String> m : map2.entrySet()) {
+            System.out.println(m.getKey() + " " + m.getValue());
+        }
+
+
+        System.out.println("\n=== Using Map.Entry Methods ===");
+        for (Map.Entry<Integer, String> entry : map2.entrySet()) {
+            System.out.println("Key: " + entry.getKey() +
+                               ", Value: " + entry.getValue() +
+                               ", HashCode: " + entry.hashCode());
+        }
+    }
+}
+
+--------------------------------------------------------------------------------------------
+
+4.Hashtreeset
+
+package nov_27;
+import java.util.*;
+
+public class Hashtreeset {
+    public static void main(String[] args) {
+
+        // HashSet
+        System.out.println("HashSet Output:");
+        HashSet<String> hashSet = new HashSet<String>();
+        hashSet.add("Ravi");
+        hashSet.add("Vijay");
+        hashSet.add("Ravi");   // duplicate
+        hashSet.add("Ajay");
+
+        for (String s : hashSet) {
+            System.out.println(s);
+        }
+
+        System.out.println("\nLinkedHashSet Output:");
+        // LinkedHashSet
+        LinkedHashSet<String> linkedHashSet = new LinkedHashSet<String>();
+        linkedHashSet.add("Ravi");
+        linkedHashSet.add("Vijay");
+        linkedHashSet.add("Ravi"); // duplicate
+        linkedHashSet.add("Ajay");
+
+        for (String s : linkedHashSet) {
+            System.out.println(s);
+        }
+
+        System.out.println("\nTreeSet Output:");
+        // TreeSet
+        TreeSet<String> treeSet = new TreeSet<String>();
+        treeSet.add("Ravi");
+        treeSet.add("Vijay");
+        treeSet.add("Ravi"); // duplicate
+        treeSet.add("Ajay");
+
+        for (String s : treeSet) {
+            System.out.println(s);
+        }
+    }
+}
+
+----------------------------------------------------------------------------------------------------
+
+5.CRUD
+
+
+package CRUD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+public class CRUD {
+
+public static void main(String[] args) {
+	CRUD objTest=new CRUD();
+        //insert data
+	objTest.create_data("1", "jinu", "jinu@gmail.com");
+	objTest.create_data("2", "jawad", "jawad@gmail.com");
+        //read data
+	objTest.read_data("2");
+        //update data
+	objTest.update_data("2", "22", "jawad2", "jawad2@gmail");
+        //delete data
+	objTest.delete_data("1");
+}
+
+public void create_data(String sl_no,String name,String email){
+	DB_Connection obj_DB_Connection=new DB_Connection();
+	Connection connection=obj_DB_Connection.get_connection();
+	PreparedStatement ps=null;
+	try {
+		String query="insert into user(sl_no,name,email) values (?,?,?)";
+		ps=connection.prepareStatement(query);
+		ps.setString(1, sl_no);
+		ps.setString(2, name);
+		ps.setString(3, email);
+		System.out.println(ps);
+		ps.executeUpdate();
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+}
+
+public void read_data(String sl_no){
+	DB_Connection obj_DB_Connection=new DB_Connection();
+	Connection connection=obj_DB_Connection.get_connection();
+	PreparedStatement ps=null;
+	ResultSet rs=null;
+	try {
+		String query="select * from user";
+		ps=connection.prepareStatement(query);
+		//ps.setString(1, sl_no);
+		System.out.println(ps);
+		rs=ps.executeQuery();
+		while(rs.next()){
+		System.out.println("Sl no -"+rs.getString("sl_no"));
+		System.out.println("name -"+rs.getString("name"));
+		System.out.println("email -"+rs.getString("email"));
+		System.out.println("---------------");
+		}
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+}
+
+public void update_data(String sl_no,String new_sl_no,String name,String email){
+	DB_Connection obj_DB_Connection=new DB_Connection();
+	Connection connection=obj_DB_Connection.get_connection();
+	PreparedStatement ps=null;
+	try {
+		String query="update user set sl_no=?,name=?,email=? where sl_no=?";
+		ps=connection.prepareStatement(query);
+		ps.setString(1, new_sl_no);
+		ps.setString(2, name);
+		ps.setString(3, email);
+		ps.setString(4, sl_no);
+		System.out.println(ps);
+		ps.executeUpdate();
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+}
+
+public void delete_data(String sl_no){
+	DB_Connection obj_DB_Connection=new DB_Connection();
+	Connection connection=obj_DB_Connection.get_connection();
+	PreparedStatement ps=null;
+	try {
+		String query="delete from user where sl_no=?";
+		ps=connection.prepareStatement(query);
+		ps.setString(1, sl_no);
+		System.out.println(ps);
+		ps.executeUpdate();
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+
+}
+}
+
+---------------------------------------------------------------------------------------------------
+
+6.DBConnections
+
+package CRUD;
+import java.sql.Connection;
+import java.sql.DriverManager;
+public class DB_Connection {
+public static void main(String[] args) {
+  DB_Connection obj_DB_Connection=new DB_Connection();
+  System.out.println(obj_DB_Connection.get_connection());
+}
+public Connection get_connection(){
+ Connection connection=null;
+try {
+  Class.forName("com.mysql.jdbc.Driver");              
+  connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/crud","root", "root");
+} catch (Exception e) {
+  System.out.println(e);
+}
+  return connection;
+}
+}
