@@ -1,0 +1,27 @@
+.page-title {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 20px;
+  color: #333;
+}
+
+
+input:valid:focus,
+input:valid:valid {
+  border: 1px solid #CCC; 
+}
+
+
+input:invalid:focus {
+  border-color: #FF0000;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  width: 250px;
+  box-sizing: border-box;
+}
+
