@@ -1,0 +1,183 @@
+JSP LOGIN REGISTERATION
+
+Create database test;
+Use test;
+CREATE TABLE `members` (
+`id` int(10) unsigned NOT NULL auto_increment,
+`first_name` varchar(45) NOT NULL,
+`last_name` varchar(45) NOT NULL,
+`email` varchar(45) NOT NULL,
+`uname` varchar(45) NOT NULL,
+`pass` varchar(45) NOT NULL,
+`regdate` date NOT NULL,
+PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+index.jsp
+
+	<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP Example</title>
+</head>
+<body>
+<form method="post" action="login.jsp">
+<center>
+<table border="1" width="30%" cellpadding="3">
+<thead>
+<tr>
+<th colspan="2">Login Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User Name</td>
+<td><input type="text" name="uname" value="" /></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><input type="password" name="pass" value="" /></td>
+</tr>
+<tr>
+<td><input type="submit" value="Login" /></td>
+<td><input type="reset" value="Reset" /></td>
+</tr>
+<tr>
+<td colspan="2">Yet Not Registered!! <a href="reg.jsp">Register Here</a></td>
+</tr>
+</tbody>
+</table>
+</center>
+</form>
+</body>
+</html>
+reg.jsp
+
+	<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Registration</title>
+</head>
+<body>
+<form method="post" action="registration.jsp">
+<center>
+<table border="1" width="30%" cellpadding="5">
+<thead>
+<tr>
+<th colspan="2">Enter Information Here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First Name</td>
+<td><input type="text" name="fname" value="" /></td>
+</tr>
+<tr>
+<td>Last Name</td>
+<td><input type="text" name="lname" value="" /></td>
+</tr>
+<tr>
+<td>Email</td>
+<td><input type="text" name="email" value="" /></td>
+</tr>
+<tr>
+<td>User Name</td>
+<td><input type="text" name="uname" value="" /></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><input type="password" name="pass" value="" /></td>
+</tr>
+<tr>
+<td><input type="submit" value="Submit" /></td>
+<td><input type="reset" value="Reset" /></td>
+</tr>
+<tr>
+<td colspan="2">Already registered!! <a href="index.jsp">Login Here</a></td>
+</tr>
+</tbody>
+</table>
+</center>
+</form>
+</body>
+</html>
+registration.jsp
+	<%@ page import ="java.sql.*" %>
+<%
+String user = request.getParameter("uname");    
+String pwd = request.getParameter("pass");
+String fname = request.getParameter("fname");
+String lname = request.getParameter("lname");
+String email = request.getParameter("email");
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
+"root", "dbpass");
+Statement st = con.createStatement();
+//ResultSet rs;
+int i = st.executeUpdate("insert into members(first_name, last_name, email, uname, pass, regdate) values ('" + fname + "','" + lname + "','" + email + "','" + user + "','" + pwd + "', CURDATE())");
+if (i > 0) {
+//session.setAttribute("userid", user);
+response.sendRedirect("welcome.jsp");
+// out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
+} else {
+response.sendRedirect("index.jsp");
+}
+%>
+welcome.jsp
+1
+2	Registration is Successful.
+Please Login Here <a href='index.jsp'>Go to Login</a>
+login.jsp
+	<%@ page import ="java.sql.*" %>
+<%
+String userid = request.getParameter("uname");    
+String pwd = request.getParameter("pass");
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
+"root", "root");
+Statement st = con.createStatement();
+ResultSet rs;
+rs = st.executeQuery("select * from members where uname='" + userid + "' and pass='" + pwd + "'");
+if (rs.next()) {
+session.setAttribute("userid", userid);
+//out.println("welcome " + userid);
+//out.println("<a href='logout.jsp'>Log out</a>");
+response.sendRedirect("success.jsp");
+} else {
+out.println("Invalid password <a href='index.jsp'>try again</a>");
+}
+%>
+success.jsp
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12	<%
+if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
+%>
+You are not logged in<br/>
+<a href="index.jsp">Please Login</a>
+<%} else {
+%>
+Welcome <%=session.getAttribute("userid")%>
+<a href='logout.jsp'>Log out</a>
+<%
+}
+%>
+logout.jsp
+	<%
+session.setAttribute("userid", null);
+session.invalidate();
+response.sendRedirect("index.jsp");
+%>
+
